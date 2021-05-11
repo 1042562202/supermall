@@ -1,17 +1,13 @@
 <template>
-  <div id="home">
+  <div id="home" class="wrapper">
     <nav-bar class="home-nav"><div slot="center">购物车</div></nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
-    <recommend-view :recommends="recommends"></recommend-view>
-    <feature-view/>
-    <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"></tab-control>
-    <goods-list :goods="showGoods"></goods-list>
-    <ul>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-      <li>列表</li>
-    </ul>
+    <scroll class="content">
+      <home-swiper :banners="banners"></home-swiper>
+      <recommend-view :recommends="recommends"></recommend-view>
+      <feature-view/>
+      <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"></tab-control>
+      <goods-list :goods="showGoods"></goods-list>
+    </scroll>
   </div>
 </template>
 
@@ -23,6 +19,7 @@
 
   import TabControl from "../../components/content/tabControl/TabControl";
   import GoodsList from "../../components/content/goods/GoodsList";
+  import Scroll from "../../components/common/scroll/Stroll";
 
   import {getHomeMultidata, getHomeGoods} from "../../network/home"
 
@@ -34,7 +31,8 @@
             HomeSwiper,
             FeatureView,
             TabControl,
-            GoodsList
+            GoodsList,
+            Scroll
         },
         data() {
             return {
@@ -97,26 +95,79 @@
 </script>
 
 <style scoped>
+  /*#home {*/
+  /*  padding-top: 44px;*/
+  /*  height: 100vh;*/
+  /*  position: relative;*/
+  /*}*/
+
+  /*.home-nav {*/
+  /*  background-color: var(--color-tint);*/
+  /*  color: #fff;*/
+
+  /*  position: fixed;*/
+  /*  left: 0;*/
+  /*  right: 0;*/
+  /*  top: 0;*/
+  /*  z-index: 9;*/
+  /*}*/
+
+
+  /*.tab-control {*/
+  /*  position: sticky;*/
+  /*  top: 44px;*/
+  /*  z-index: 9;*/
+  /*}*/
+
+  /*.content {*/
+  /*  overflow: hidden;*/
+
+  /*  position: absolute;*/
+  /*  top: 44px;*/
+  /*  bottom: 49px;*/
+  /*  left: 0;*/
+  /*  right: 0;*/
+  /*}*/
+
+
+
   #home {
-    padding-top: 44px;
+    /*padding-top: 44px;*/
+    height: 100vh;
+    position: relative;
   }
 
   .home-nav {
     background-color: var(--color-tint);
     color: #fff;
 
-    position: fixed;
+    /*在使用浏览器原生滚动时, 为了让导航不跟随一起滚动*/
+    /*position: fixed;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*z-index: 9;*/
+  }
+
+  .content {
+    overflow: hidden;
+
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
     left: 0;
     right: 0;
-    top: 0;
+  }
+
+  .tab-control {
+    position: relative;
     z-index: 9;
   }
 
-
-  .tab-control {
-    position: sticky;
-    top: 44px
-    /*z-index: 9;*/
-  }
+  /*.content {*/
+  /*height: calc(100% - 93px);*/
+  /*overflow: hidden;*/
+  /*margin-top: 44px;*/
+  /*}*/
 
 </style>
