@@ -8,6 +8,7 @@
       <tab-control class="tab-control" :titles="['流行','新款','精选']" @tabClick="tabClick"></tab-control>
       <goods-list :goods="showGoods"></goods-list>
     </scroll>
+    <back-top @click.native="backClick"/>
   </div>
 </template>
 
@@ -20,6 +21,7 @@
   import TabControl from "../../components/content/tabControl/TabControl";
   import GoodsList from "../../components/content/goods/GoodsList";
   import Scroll from "../../components/common/scroll/Stroll";
+  import BackTop from "../../components/content/backTop/BackTop";
 
   import {getHomeMultidata, getHomeGoods} from "../../network/home"
 
@@ -32,7 +34,8 @@
             FeatureView,
             TabControl,
             GoodsList,
-            Scroll
+            Scroll,
+            BackTop
         },
         data() {
             return {
@@ -88,8 +91,11 @@
                     this.goods[type].list.push(...res.data.list);
                     this.goods[type].page += 1;
                 })
+            },
 
-            }
+            backClick() {
+                this.$refs.scroll.scrollTo(0, 0,500)
+            },
         }
     }
 </script>

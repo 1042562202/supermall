@@ -19,7 +19,14 @@
         mounted() {
             this.scroll = new BScroll(this.$refs.wrapper, {
 
-            })
+            });
+
+            this.scroll.scrollTo(0, 0);
+        },
+        methods: {
+            scrollTo(x, y, time=300) {
+                this.scroll.scrollTo(x, y, time);
+            }
         }
     }
 </script>
